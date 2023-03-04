@@ -11,10 +11,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.glebalekseevjk.common.App
+import java.awt.Dimension
 
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
+    Window(onCloseRequest = ::exitApplication, title = "Lab 1", resizable = true) {
+        window.minimumSize = Dimension(650, 450)
         App()
     }
 }

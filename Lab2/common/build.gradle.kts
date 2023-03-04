@@ -22,11 +22,16 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api(compose.ui)
+                api(compose.animation)
+                implementation("dev.benedikt.math:bezier-spline:1.2.0")
+                implementation("gay.kanwi:compxclib:v1.0")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("junit:junit:4.13")
             }
         }
         val androidMain by getting {
@@ -43,6 +48,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 api(compose.preview)
+                api(compose.foundation)
             }
         }
         val desktopTest by getting

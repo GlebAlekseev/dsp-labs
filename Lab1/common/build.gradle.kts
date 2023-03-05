@@ -23,6 +23,7 @@ kotlin {
                 api(compose.ui)
                 api(compose.animation)
                 implementation("dev.benedikt.math:bezier-spline:1.2.0")
+                implementation("org.jetbrains.compose.foundation:foundation-desktop:1.3.0")
             }
         }
         val commonTest by getting {

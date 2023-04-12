@@ -1,5 +1,5 @@
 package com.glebalekseevjk.common
 
 actual fun getPlatformName(): String {
-    return "Android"
+    return "Desktop"
 }

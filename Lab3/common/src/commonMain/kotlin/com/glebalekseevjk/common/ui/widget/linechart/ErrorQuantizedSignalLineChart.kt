@@ -19,7 +19,6 @@ import io.github.koalaplot.core.util.VerticalRotation
 import io.github.koalaplot.core.util.rotateVertically
 import io.github.koalaplot.core.xychart.*
 import io.github.koalaplot.sample.*
-import ui.screen.castdfRepository
 
 
 @OptIn(ExperimentalKoalaPlotApi::class)

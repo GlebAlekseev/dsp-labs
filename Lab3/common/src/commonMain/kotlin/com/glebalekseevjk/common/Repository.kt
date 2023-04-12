@@ -7,7 +7,7 @@ import kotlin.math.*
  * Converting an analog signal to digital form
  */
 
-class CASTDFRepository {
+class Repository {
 
     fun getTotalEnergy(): Double =
         (VARIABLE_T.pow(3) * VARIABLE_a.pow(2)) / 3 +

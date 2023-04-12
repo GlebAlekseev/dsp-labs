@@ -1,18 +1,18 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import com.glebalekseevjk.common.SANPSRepository
-import ui.screen.sanpsRepository
+import com.glebalekseevjk.common.Repository
+import ui.screen.repository
 
 internal object PhaseSpectrum1 : LineChartData {
     override var axisX = mutableListOf<Double>()
     override var axisY = mutableListOf<Double>()
 
     init {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_1)
+        val spectrumWidth = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_1)
         axisX = (1..spectrumWidth.toInt() step 2000).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sanpsRepository.getPhaseSpectrum(n))
+            axisY.add(repository.getPhaseSpectrum(n))
         }
     }
 
@@ -27,11 +27,11 @@ internal object PhaseSpectrum2 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_2)
+        val spectrumWidth = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_2)
         axisX = (1..spectrumWidth.toInt() step 2000).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sanpsRepository.getPhaseSpectrum(n))
+            axisY.add(repository.getPhaseSpectrum(n))
         }
     }
 
@@ -46,11 +46,11 @@ internal object PhaseSpectrum3 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_3)
+        val spectrumWidth = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_3)
         axisX = (1..spectrumWidth.toInt() step 2000).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sanpsRepository.getPhaseSpectrum(n))
+            axisY.add(repository.getPhaseSpectrum(n))
         }
     }
 
@@ -65,11 +65,11 @@ internal object PhaseSpectrum4 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_4)
+        val spectrumWidth = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_4)
         axisX = (1..spectrumWidth.toInt() step 2000).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sanpsRepository.getPhaseSpectrum(n))
+            axisY.add(repository.getPhaseSpectrum(n))
         }
     }
 
@@ -84,11 +84,11 @@ internal object PhaseSpectrum5 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_5)
+        val spectrumWidth = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_5)
         axisX = (1..spectrumWidth.toInt() step 2000).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sanpsRepository.getPhaseSpectrum(n))
+            axisY.add(repository.getPhaseSpectrum(n))
         }
     }
 

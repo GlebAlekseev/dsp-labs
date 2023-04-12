@@ -23,7 +23,7 @@ import io.github.koalaplot.core.util.generateHueColorPalette
 import io.github.koalaplot.core.util.rotateVertically
 import io.github.koalaplot.core.xychart.*
 import io.github.koalaplot.sample.*
-import ui.screen.castdfRepository
+import ui.screen.repository
 
 
 internal object SourceSignal {
@@ -43,15 +43,15 @@ internal object SourceSignal {
             timer += interval
             timeList.add(timer)
         }
-        val discreteSignal = castdfRepository.getGeneratedDiscreteSignal()
-        val quantizedSignal = castdfRepository.getQuantizedSignal(discreteSignal)
-        val koefs = castdfRepository.getDiscreteFourierTransformCoefficients(quantizedSignal.first)
+        val discreteSignal = repository.getGeneratedDiscreteSignal()
+        val quantizedSignal = repository.getQuantizedSignal(discreteSignal)
+        val koefs = repository.getDiscreteFourierTransformCoefficients(quantizedSignal.first)
 
         timeList.forEach { time ->
             amplitudesList[0].second.add(CASTDFRepository.sourceSignal(time))
         }
         timeList.forEach { time ->
-            amplitudesList[1].second.add(castdfRepository.getRestoredDpfSignal(koefs, time))
+            amplitudesList[1].second.add(repository.getRestoredDpfSignal(koefs, time))
         }
     }
 

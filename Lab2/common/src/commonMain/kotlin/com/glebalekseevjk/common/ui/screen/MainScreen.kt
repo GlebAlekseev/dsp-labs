@@ -12,7 +12,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.glebalekseevjk.common.SANPSRepository
+import com.glebalekseevjk.common.Repository
 import com.glebalekseevjk.common.ui.widget.linechart.AmplitudeSpectrumPlot
 import com.glebalekseevjk.common.ui.widget.linechart.PhaseSpectrumPlot
 import com.glebalekseevjk.common.ui.widget.linechart.data.*
@@ -21,20 +21,20 @@ import ui.widget.MainWrapper
 import ui.widget.linechart.sourcesignal.SourceSignalPlot
 
 val deltaCases = mapOf(
-    1 to SANPSRepository.VARIABLE_DELTA_CASE_1,
-    2 to SANPSRepository.VARIABLE_DELTA_CASE_2,
-    3 to SANPSRepository.VARIABLE_DELTA_CASE_3,
-    4 to SANPSRepository.VARIABLE_DELTA_CASE_4,
-    5 to SANPSRepository.VARIABLE_DELTA_CASE_5
+    1 to Repository.VARIABLE_DELTA_CASE_1,
+    2 to Repository.VARIABLE_DELTA_CASE_2,
+    3 to Repository.VARIABLE_DELTA_CASE_3,
+    4 to Repository.VARIABLE_DELTA_CASE_4,
+    5 to Repository.VARIABLE_DELTA_CASE_5
 )
 
-val sanpsRepository by lazy { SANPSRepository() }
+val repository by lazy { Repository() }
 val bList = mutableListOf<List<String>>()
 
 @Composable
 fun MainScreen() {
     deltaCases.forEach {
-        val spectrumWidth = sanpsRepository.getSpectrumWidth(it.value)
+        val spectrumWidth = repository.getSpectrumWidth(it.value)
         bList.add(listOf("${it.value}", "$spectrumWidth"))
     }
 
@@ -54,8 +54,8 @@ fun MainScreen() {
                 TableWidget(
                     listOf(
                         listOf(
-                            "${SANPSRepository.VARIABLE_EMax}",
-                            "${SANPSRepository.VARIABLE_tu}",
+                            "${Repository.VARIABLE_EMax}",
+                            "${Repository.VARIABLE_tu}",
                         ),
                     ),
                     listOf("Emax, В", "tи, с"),
@@ -76,7 +76,7 @@ fun MainScreen() {
                         )
                         append(
                             AnnotatedString(
-                                "${sanpsRepository.getTotalEnergy()} Дж",
+                                "${repository.getTotalEnergy()} Дж",
                                 SpanStyle(color = Color.DarkGray, background = Color.Green)
                             )
                         )
@@ -130,35 +130,35 @@ fun MainScreen() {
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum1,
-                    "АЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_1}",
+                    "АЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_1}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum2,
-                    "АЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_2}",
+                    "АЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_2}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum3,
-                    "АЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_3}",
+                    "АЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_3}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum4,
-                    "АЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_4}",
+                    "АЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_4}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum5,
-                    "АЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_5}",
+                    "АЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_5}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
@@ -166,35 +166,35 @@ fun MainScreen() {
 
                 PhaseSpectrumPlot(
                     PhaseSpectrum1,
-                    "ФЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_1}",
+                    "ФЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_1}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum2,
-                    "ФЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_2}",
+                    "ФЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_2}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum3,
-                    "ФЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_3}",
+                    "ФЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_3}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum4,
-                    "ФЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_4}",
+                    "ФЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_4}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum5,
-                    "ФЧХ одиночного импульса, δ = ${SANPSRepository.VARIABLE_DELTA_CASE_5}",
+                    "ФЧХ одиночного импульса, δ = ${Repository.VARIABLE_DELTA_CASE_5}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)

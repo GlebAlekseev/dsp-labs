@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.glebalekseevjk.common.Repository
 import com.glebalekseevjk.common.ui.widget.linechart.AnalogSignalPlot
 import com.glebalekseevjk.common.ui.widget.linechart.DiscreteSignalPlot
 import com.glebalekseevjk.common.ui.widget.linechart.ErrorQuantizedSignalPlot
@@ -21,21 +22,21 @@ import compxclib.ComplexNumber
 import ui.widget.MainWrapper
 import ui.widget.linechart.sourcesignal.SourceSignalPlot
 
-val castdfRepository = CASTDFRepository()
+val repository = Repository()
 
-val boundaryFrequencyWk by lazy { castdfRepository.getSpectrumWidth() }
-val boundaryFrequencyHz by lazy { castdfRepository.getSpectrumWidthHz() }
+val boundaryFrequencyWk by lazy { repository.getSpectrumWidth() }
+val boundaryFrequencyHz by lazy { repository.getSpectrumWidthHz() }
 
-val samplingFrequency by lazy { castdfRepository.getSamplingFrequencyAnalogSignal() }
-val rawSamplingStep by lazy { castdfRepository.getRawSamplingStep() }
-val numberReadoutValues by lazy { castdfRepository.getNumberReadoutValues() }
-val finalSamplingStep by lazy { castdfRepository.getFinalSamplingStep() }
+val samplingFrequency by lazy { repository.getSamplingFrequencyAnalogSignal() }
+val rawSamplingStep by lazy { repository.getRawSamplingStep() }
+val numberReadoutValues by lazy { repository.getNumberReadoutValues() }
+val finalSamplingStep by lazy { repository.getFinalSamplingStep() }
 
-val generatedDiscreteSignal by lazy { castdfRepository.getGeneratedDiscreteSignal() }
-val quantizedSignal by lazy { castdfRepository.getQuantizedSignal(generatedDiscreteSignal) }
+val generatedDiscreteSignal by lazy { repository.getGeneratedDiscreteSignal() }
+val quantizedSignal by lazy { repository.getQuantizedSignal(generatedDiscreteSignal) }
 
 val discreteFourierTransformCoefficients by lazy {
-    castdfRepository.getDiscreteFourierTransformCoefficients(
+    repository.getDiscreteFourierTransformCoefficients(
         quantizedSignal.first
     )
 }
@@ -58,9 +59,9 @@ fun MainScreen() {
                 TableWidget(
                     listOf(
                         listOf(
-                            "${CASTDFRepository.VARIABLE_T}",
-                            "${CASTDFRepository.VARIABLE_a}",
-                            "${CASTDFRepository.VARIABLE_b}",
+                            "${Repository.VARIABLE_T}",
+                            "${Repository.VARIABLE_a}",
+                            "${Repository.VARIABLE_b}",
                         ),
                     ),
                     listOf("T, с", "a, 1/с", "b, В"),
@@ -94,7 +95,7 @@ fun MainScreen() {
                 TableWidget(
                     listOf(
                         listOf(
-                            "${CASTDFRepository.VARIABLE_DELTA}",
+                            "${Repository.VARIABLE_DELTA}",
                             "${boundaryFrequencyWk.toLong()}",
                             "${boundaryFrequencyHz.toLong()}"
                         )

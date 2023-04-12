@@ -6,7 +6,7 @@ import kotlin.math.*
  * SPECTRAL ANALYSIS OF PERIODIC SIGNALS
  */
 
-class SAPSRepository {
+class Repository {
     fun getAveragePower() = (2 * VARIABLE_EMax * VARIABLE_EMax * VARIABLE_tu) / VARIABLE_T
 
     fun getA0Factor() = 0.0

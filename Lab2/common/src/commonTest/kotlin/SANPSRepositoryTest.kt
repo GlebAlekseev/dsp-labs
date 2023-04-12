@@ -1,15 +1,15 @@
-import com.glebalekseevjk.common.SANPSRepository
+import com.glebalekseevjk.common.Repository
 import org.junit.Test
 import kotlin.math.absoluteValue
 
 class Test1 {
-    val sanpsRepository = SANPSRepository()
+    val repository = Repository()
 
     @Test
     fun testGetSignalSpectralDensity() { // +
         var sum = 0.0
         for (i in 0..100) {
-            val actual = sanpsRepository.getSignalSpectralDensity(sum)
+            val actual = repository.getSignalSpectralDensity(sum)
             println("sum = $sum actual=${actual}")
             sum += i / 100.0
 
@@ -20,7 +20,7 @@ class Test1 {
     fun testGetAmplitudeSpectrum() { // +
         var sum = 0.0
         for (i in 0..10000) {
-            val actual = sanpsRepository.getAmplitudeSpectrum(sum)
+            val actual = repository.getAmplitudeSpectrum(sum)
             println("sum = $sum actual=${actual}")
             sum += i / 100.0
 
@@ -31,7 +31,7 @@ class Test1 {
     fun testGetPhaseSpectrum() { // +
         var sum = 0.0
         for (i in 0..1000) {
-            val actual = sanpsRepository.getPhaseSpectrum(sum)
+            val actual = repository.getPhaseSpectrum(sum)
             println("sum = $sum actual=${actual}")
             sum += 10
 
@@ -40,7 +40,7 @@ class Test1 {
 
     @Test
     fun testGetTotalEnergy() { // +
-        val actual = sanpsRepository.getTotalEnergy()
+        val actual = repository.getTotalEnergy()
         println("actual=$actual")
     }
 
@@ -48,7 +48,7 @@ class Test1 {
     fun testGetConcentratedEnergy() { // +
         var sum = 0.0
         for (i in 0..1000) {
-            val actual = sanpsRepository.getConcentratedEnergy(sum)
+            val actual = repository.getConcentratedEnergy(sum)
             println("wk = $sum actual=${actual}")
             sum += 1000
         }
@@ -61,22 +61,24 @@ class Test1 {
         val tu = 112
         repeat(tu * 2) {
             timer += 0.000001
-            val actual = sanpsRepository.getSignalSpectralDensitySt(340448.0, timer)
+            val actual = repository.getSignalSpectralDensitySt(340448.0, timer)
             println("w=340448\ttimer=$timer\t actual=${actual} ${if (actual.absoluteValue > 10) "-----------------------BAD" else ""}")
         }
     }
 
     @Test
     fun testGetSpectrumWidth() { // +
-        sanpsRepository.getSpectrumWidth(SANPSRepository.VARIABLE_DELTA_CASE_5)
+        val res = repository.getSpectrumWidth(Repository.VARIABLE_DELTA_CASE_1)
+        println(res)
+
     }
 
     @Test
     fun testSi() { // +
         var sum = 0.0
         for (i in 0..1000) {
-            val actual = SANPSRepository.si(sum * SANPSRepository.VARIABLE_tu)
-            println("wk = $sum sum*SANPSRepository.VARIABLE_t=${sum * SANPSRepository.VARIABLE_tu} actual=${actual}")
+            val actual = Repository.si(sum * Repository.VARIABLE_tu)
+            println("wk = $sum sum*SANPSRepository.VARIABLE_t=${sum * Repository.VARIABLE_tu} actual=${actual}")
             sum += 1000
         }
     }
@@ -93,7 +95,7 @@ class Test1 {
 //        val actual2 = SANPSRepository.si(sum2)
 //        println("wk2 = ${sum2} actual2=${actual2}")
         var sum2 = 0.0
-        val actual2 = SANPSRepository.si(sum2)
+        val actual2 = Repository.si(sum2)
         println("wk2 = ${sum2} actual2=${actual2}")
     }
 }

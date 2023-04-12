@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
-import com.glebalekseevjk.common.SAPSRepository
+import com.glebalekseevjk.common.Repository
 import io.github.koalaplot.core.ChartLayout
 import io.github.koalaplot.core.Symbol
 import io.github.koalaplot.core.legend.FlowLegend
@@ -25,21 +25,21 @@ import io.github.koalaplot.core.util.rotateVertically
 import io.github.koalaplot.core.xychart.*
 import io.github.koalaplot.sample.*
 import ui.screen.deltaCases
-import ui.screen.sapsRepository
+import ui.screen.repository
 
 internal object SourceSignal {
     var timeList = mutableListOf(0.0)
     val amplitudesList = listOf(
-        "Эксперимент 1: δ = ${SAPSRepository.VARIABLE_DELTA_CASE_1}" to mutableListOf<Double>(),
-        "Эксперимент 2: δ = ${SAPSRepository.VARIABLE_DELTA_CASE_2}" to mutableListOf<Double>(),
-        "Эксперимент 3: δ = ${SAPSRepository.VARIABLE_DELTA_CASE_3}" to mutableListOf<Double>(),
-        "Эксперимент 4: δ = ${SAPSRepository.VARIABLE_DELTA_CASE_4}" to mutableListOf<Double>(),
-        "Эксперимент 5: δ = ${SAPSRepository.VARIABLE_DELTA_CASE_5}" to mutableListOf<Double>(),
+        "Эксперимент 1: δ = ${Repository.VARIABLE_DELTA_CASE_1}" to mutableListOf<Double>(),
+        "Эксперимент 2: δ = ${Repository.VARIABLE_DELTA_CASE_2}" to mutableListOf<Double>(),
+        "Эксперимент 3: δ = ${Repository.VARIABLE_DELTA_CASE_3}" to mutableListOf<Double>(),
+        "Эксперимент 4: δ = ${Repository.VARIABLE_DELTA_CASE_4}" to mutableListOf<Double>(),
+        "Эксперимент 5: δ = ${Repository.VARIABLE_DELTA_CASE_5}" to mutableListOf<Double>(),
     )
 
     init {
         val interval = 0.000008
-        val maxTime = SAPSRepository.VARIABLE_T * 2
+        val maxTime = Repository.VARIABLE_T * 2
         val countRepeat: Int = (maxTime / interval).toInt() + 1
         var timer = 0.0
         repeat(countRepeat) {
@@ -47,9 +47,9 @@ internal object SourceSignal {
             timeList.add(timer)
         }
         deltaCases.forEach {
-            val n = sapsRepository.getMaxNumberOfHarmonics(it.value)
+            val n = repository.getMaxNumberOfHarmonics(it.value)
             timeList.forEach { time ->
-                amplitudesList[it.key - 1].second.add(sapsRepository.getAmplitude(n, time))
+                amplitudesList[it.key - 1].second.add(repository.getAmplitude(n, time))
             }
         }
     }

@@ -10,7 +10,7 @@ import kotlin.math.sin
  * SPECTRAL ANALYSIS OF NON-PERIODIC SIGNALS
  */
 
-class SANPSRepository {
+class Repository {
     fun getSignalSpectralDensity(w: Double): ComplexNumber {
         val re = (VARIABLE_EMax / w) * (sin(w * VARIABLE_tu))
         val im = (VARIABLE_EMax / w) * (cos(w * VARIABLE_tu) - 1)

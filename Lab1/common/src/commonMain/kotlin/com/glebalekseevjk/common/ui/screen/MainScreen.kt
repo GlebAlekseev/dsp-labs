@@ -12,7 +12,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.glebalekseevjk.common.SAPSRepository
+import com.glebalekseevjk.common.Repository
 import com.glebalekseevjk.common.ui.widget.linechart.data.*
 import com.glebalekseevjk.common.ui.widget.table.TableWidget
 import ui.widget.MainWrapper
@@ -21,22 +21,22 @@ import ui.widget.linechart.phase.PhaseSpectrumPlot
 import ui.widget.linechart.sourcesignal.SourceSignalPlot
 
 val deltaCases = mapOf(
-    1 to SAPSRepository.VARIABLE_DELTA_CASE_1,
-    2 to SAPSRepository.VARIABLE_DELTA_CASE_2,
-    3 to SAPSRepository.VARIABLE_DELTA_CASE_3,
-    4 to SAPSRepository.VARIABLE_DELTA_CASE_4,
-    5 to SAPSRepository.VARIABLE_DELTA_CASE_5
+    1 to Repository.VARIABLE_DELTA_CASE_1,
+    2 to Repository.VARIABLE_DELTA_CASE_2,
+    3 to Repository.VARIABLE_DELTA_CASE_3,
+    4 to Repository.VARIABLE_DELTA_CASE_4,
+    5 to Repository.VARIABLE_DELTA_CASE_5
 )
 
-val sapsRepository by lazy { SAPSRepository() }
+val repository by lazy { Repository() }
 val bList = mutableListOf<List<String>>()
 
 @Composable
 fun MainScreen() {
     deltaCases.forEach {
-        val countHarmonics = sapsRepository.getMaxNumberOfHarmonics(it.value)
-        val amplitude = sapsRepository.getAmplitude(countHarmonics)
-        val phase = sapsRepository.getPhase(countHarmonics)
+        val countHarmonics = repository.getMaxNumberOfHarmonics(it.value)
+        val amplitude = repository.getAmplitude(countHarmonics)
+        val phase = repository.getPhase(countHarmonics)
         bList.add(listOf("${it.value}", "$countHarmonics", "$amplitude", "$phase"))
     }
 
@@ -56,10 +56,10 @@ fun MainScreen() {
                 TableWidget(
                     listOf(
                         listOf(
-                            "${SAPSRepository.VARIABLE_EMax}",
-                            "${SAPSRepository.VARIABLE_tu}",
-                            "${SAPSRepository.VARIABLE_T}",
-                            "${SAPSRepository.VARIABLE_W}"
+                            "${Repository.VARIABLE_EMax}",
+                            "${Repository.VARIABLE_tu}",
+                            "${Repository.VARIABLE_T}",
+                            "${Repository.VARIABLE_W}"
                         ),
                     ),
                     listOf("Emax, В", "tи, с", "T, с", "w, рад/с"),
@@ -80,7 +80,7 @@ fun MainScreen() {
                         )
                         append(
                             AnnotatedString(
-                                "${sapsRepository.getAveragePower()} Вт",
+                                "${repository.getAveragePower()} Вт",
                                 SpanStyle(color = Color.DarkGray, background = Color.Green)
                             )
                         )
@@ -111,70 +111,70 @@ fun MainScreen() {
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum1,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_1}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_1}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum2,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_2}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_2}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum3,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_3}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_3}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum4,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_4}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_4}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 AmplitudeSpectrumPlot(
                     AmplitudeSpectrum5,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_5}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_5}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum1,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_1}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_1}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum2,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_2}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_2}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum3,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_3}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_3}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum4,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_4}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_4}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)
                 )
                 PhaseSpectrumPlot(
                     PhaseSpectrum5,
-                    "Фазовый спектр, δ = ${SAPSRepository.VARIABLE_DELTA_CASE_5}",
+                    "Фазовый спектр, δ = ${Repository.VARIABLE_DELTA_CASE_5}",
                     modifier = Modifier.heightIn(0.dp, 600.dp).widthIn(0.dp, 1000.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 40.dp, bottom = 40.dp)

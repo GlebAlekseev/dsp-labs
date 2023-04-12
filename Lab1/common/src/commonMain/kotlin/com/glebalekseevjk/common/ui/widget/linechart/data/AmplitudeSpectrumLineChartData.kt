@@ -1,18 +1,18 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import com.glebalekseevjk.common.SAPSRepository
-import ui.screen.sapsRepository
+import com.glebalekseevjk.common.Repository
+import ui.screen.repository
 
 internal object AmplitudeSpectrum1 : LineChartData {
     override var axisX: MutableList<Double> = mutableListOf<Double>()
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_1)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_1)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getAmplitude(n.toInt()))
+            axisY.add(repository.getAmplitude(n.toInt()))
         }
     }
 
@@ -27,11 +27,11 @@ internal object AmplitudeSpectrum2 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_2)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_2)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getAmplitude(n.toInt()))
+            axisY.add(repository.getAmplitude(n.toInt()))
         }
     }
 
@@ -46,11 +46,11 @@ internal object AmplitudeSpectrum3 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_3)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_3)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getAmplitude(n.toInt()))
+            axisY.add(repository.getAmplitude(n.toInt()))
         }
     }
 
@@ -65,11 +65,11 @@ internal object AmplitudeSpectrum4 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_4)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_4)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getAmplitude(n.toInt()))
+            axisY.add(repository.getAmplitude(n.toInt()))
         }
     }
 
@@ -84,11 +84,11 @@ internal object AmplitudeSpectrum5 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_5)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_5)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getAmplitude(n.toInt()))
+            axisY.add(repository.getAmplitude(n.toInt()))
         }
     }
 

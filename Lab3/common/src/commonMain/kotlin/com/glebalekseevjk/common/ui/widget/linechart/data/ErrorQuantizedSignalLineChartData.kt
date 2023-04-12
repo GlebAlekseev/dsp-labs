@@ -1,6 +1,6 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import ui.screen.castdfRepository
+import ui.screen.repository
 import kotlin.math.absoluteValue
 
 object ErrorQuantizedSignalData : LineChartData {
@@ -8,9 +8,9 @@ object ErrorQuantizedSignalData : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val discreteSignal = castdfRepository.getGeneratedDiscreteSignal()
-        val quantizedSignal = castdfRepository.getQuantizedSignal(discreteSignal)
-        val errorList = castdfRepository.getQuantizationErrors(discreteSignal, quantizedSignal.first)
+        val discreteSignal = repository.getGeneratedDiscreteSignal()
+        val quantizedSignal = repository.getQuantizedSignal(discreteSignal)
+        val errorList = repository.getQuantizationErrors(discreteSignal, quantizedSignal.first)
         val iterations = 10
         val step = (errorList[1].first - errorList[0].first).absoluteValue / iterations
         for (i in 0 until errorList.size) {

@@ -1,5 +1,5 @@
-import com.glebalekseevjk.common.CASTDFRepository.Companion.VARIABLE_T
-import com.glebalekseevjk.common.CASTDFRepository.Companion.roundUpToEven
+import com.glebalekseevjk.common.Repository.Companion.VARIABLE_T
+import com.glebalekseevjk.common.Repository.Companion.roundUpToEven
 import org.junit.Test
 
 class Test1 {

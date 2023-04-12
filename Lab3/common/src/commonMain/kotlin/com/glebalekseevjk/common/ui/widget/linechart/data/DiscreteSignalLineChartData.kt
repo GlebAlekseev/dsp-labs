@@ -1,6 +1,6 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import ui.screen.castdfRepository
+import ui.screen.repository
 import kotlin.math.absoluteValue
 
 object DiscreteSignalData : LineChartData {
@@ -8,7 +8,7 @@ object DiscreteSignalData : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val signalList = castdfRepository.getGeneratedDiscreteSignal()
+        val signalList = repository.getGeneratedDiscreteSignal()
         val iterations = 10
         val step = (signalList[1].first - signalList[0].first).absoluteValue / iterations
         for (i in 0 until signalList.size) {

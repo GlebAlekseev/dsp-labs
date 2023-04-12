@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
-import com.glebalekseevjk.common.CASTDFRepository.Companion.roundUpToEven
 import com.glebalekseevjk.common.ui.widget.linechart.data.QuantizedSignalData
 import io.github.koalaplot.core.ChartLayout
 import io.github.koalaplot.core.Symbol
@@ -20,7 +19,6 @@ import io.github.koalaplot.core.util.VerticalRotation
 import io.github.koalaplot.core.util.rotateVertically
 import io.github.koalaplot.core.xychart.*
 import io.github.koalaplot.sample.*
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalKoalaPlotApi::class)
 @Composable

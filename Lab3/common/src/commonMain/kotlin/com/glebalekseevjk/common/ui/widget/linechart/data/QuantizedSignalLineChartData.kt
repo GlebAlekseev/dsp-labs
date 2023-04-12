@@ -1,6 +1,6 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import ui.screen.castdfRepository
+import ui.screen.repository
 import kotlin.math.absoluteValue
 
 object QuantizedSignalData : LineChartData {
@@ -9,7 +9,7 @@ object QuantizedSignalData : LineChartData {
     val gradedValues: List<Double>
 
     init {
-        val (signalList, _gradedValues) = castdfRepository.getQuantizedSignal(castdfRepository.getGeneratedDiscreteSignal())
+        val (signalList, _gradedValues) = repository.getQuantizedSignal(repository.getGeneratedDiscreteSignal())
         gradedValues = _gradedValues
         val iterations = 10
         val step = (signalList[1].first - signalList[0].first).absoluteValue / iterations

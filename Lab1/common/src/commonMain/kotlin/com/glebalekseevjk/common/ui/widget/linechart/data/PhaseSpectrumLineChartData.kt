@@ -1,18 +1,18 @@
 package com.glebalekseevjk.common.ui.widget.linechart.data
 
-import com.glebalekseevjk.common.SAPSRepository
-import ui.screen.sapsRepository
+import com.glebalekseevjk.common.Repository
+import ui.screen.repository
 
 internal object PhaseSpectrum1 : LineChartData {
     override var axisX = mutableListOf<Double>()
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_1)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_1)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getPhase(n.toInt()))
+            axisY.add(repository.getPhase(n.toInt()))
         }
     }
 
@@ -27,11 +27,11 @@ internal object PhaseSpectrum2 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_2)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_2)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getPhase(n.toInt()))
+            axisY.add(repository.getPhase(n.toInt()))
         }
     }
 
@@ -46,11 +46,11 @@ internal object PhaseSpectrum3 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_3)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_3)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getPhase(n.toInt()))
+            axisY.add(repository.getPhase(n.toInt()))
         }
     }
 
@@ -65,11 +65,11 @@ internal object PhaseSpectrum4 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_4)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_4)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getPhase(n.toInt()))
+            axisY.add(repository.getPhase(n.toInt()))
         }
     }
 
@@ -84,11 +84,11 @@ internal object PhaseSpectrum5 : LineChartData {
     override var axisY = mutableListOf<Double>()
 
     init {
-        val maxCountHarmonics = sapsRepository.getMaxNumberOfHarmonics(SAPSRepository.VARIABLE_DELTA_CASE_5)
+        val maxCountHarmonics = repository.getMaxNumberOfHarmonics(Repository.VARIABLE_DELTA_CASE_5)
         axisX = (1..maxCountHarmonics).toList().map { it.toDouble() }.toMutableList()
 
         for (n in axisX) {
-            axisY.add(sapsRepository.getPhase(n.toInt()))
+            axisY.add(repository.getPhase(n.toInt()))
         }
     }
 

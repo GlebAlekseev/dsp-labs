@@ -14,7 +14,7 @@ class Repository() {
 
 class ResultData {
     // 1) Рассчитать вспомогательные параметры АЧХ
-    val delta1: Double = (10.0.pow(0.05 * A_P) - 1) / (10.0.pow(0.05 * A_P) + 1)
+    val delta1: Double = (10.0.pow(0.05 * A_P) - 1.0) / (10.0.pow(0.05 * A_P) + 1.0)
     val delta2: Double = 10.0.pow(-0.05 * A_Z)
     val delta: Double = min(delta1, delta2)
 
@@ -29,7 +29,7 @@ class ResultData {
         else -> (a - 7.95) / 14.36
     } // D-фактор по весовым функциям Кайзера
 
-    var m = ((F_D * d) / fTransition).roundUp().toInt() // Порядок фильтра M
+    var m = ((F_D * d) / fTransition).roundUp().toInt() // Порядок фильтра M roundUp()
 
     // Кол-во ответвлений N = M + 1
     val n: Int
@@ -278,7 +278,7 @@ class ResultData {
         get() {
             val axis = Axis<Double, Double>()
             for (i in 0 until numberReadoutValues) {
-                axis.axisX.add(i.toDouble())
+                axis.axisX.add(i * finalSamplingStep)
                 axis.axisY.add(outputReferencesValuesSignal(i))
             }
             return axis

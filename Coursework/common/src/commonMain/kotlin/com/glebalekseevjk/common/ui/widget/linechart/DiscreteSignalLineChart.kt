@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
 import com.glebalekseevjk.common.roundToString
-import com.glebalekseevjk.common.ui.widget.data.QuantizedSignalData
+import com.glebalekseevjk.common.ui.widget.data.LineChartData
 import io.github.koalaplot.core.ChartLayout
 import io.github.koalaplot.core.line.DefaultPoint
 import io.github.koalaplot.core.line.LineChart
@@ -16,26 +16,35 @@ import io.github.koalaplot.core.util.VerticalRotation
 import io.github.koalaplot.core.util.rotateVertically
 import io.github.koalaplot.core.xychart.*
 import io.github.koalaplot.sample.*
+import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalKoalaPlotApi::class)
 @Composable
 @Suppress("MagicNumber")
-fun QuantizedSignalPlot(
-    data: QuantizedSignalData,
-    title: String = "Цифровой сигнал",
+fun DiscreteSignalPlot(
+    data: LineChartData,
+    title: String = "Дискретный сигнал",
     modifier: Modifier = Modifier
 ) {
     ChartLayout(
         modifier = modifier,
         title = { ChartTitle(title) },
     ) {
+        val deltaY = (data.maxY!! - data.minY!!).absoluteValue
         XYChart<Double, Double>(
             xAxisModel = LinearAxisModel(
-                (data.minX..data.maxX),
-                minimumMajorTickSpacing = 50.dp,
-                minimumMajorTickIncrement = 0.1
+                (data.minX!!..data.maxX!!),
+                minimumMajorTickSpacing = 25.dp,
+                minimumMajorTickIncrement = 0.01,
+                minorTickCount = 1
             ),
-            yAxisModel = CategoryAxisModel(data.gradedValues.sorted(), minimumMajorTickSpacing = 50.dp),
+            yAxisModel = LinearAxisModel(
+                ((if (data.minY!! <= 0) data.minY!! - deltaY * 0.1 else data.minY!! + deltaY * 0.1)..
+                        (if (data.maxY!! <= 0) data.maxY!! - deltaY * 0.1 else data.maxY!! + deltaY * 0.1)),
+                minimumMajorTickSpacing = 25.dp,
+                minimumMajorTickIncrement = 0.001,
+                minorTickCount = 1
+            ),
             xAxisLabels = {
                 AxisLabel(
                     it.roundToString(2),

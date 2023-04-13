@@ -18,6 +18,7 @@ import com.glebalekseevjk.common.Repository
 import com.glebalekseevjk.common.ResultData
 import com.glebalekseevjk.common.roundToString
 import com.glebalekseevjk.common.ui.widget.data.*
+import com.glebalekseevjk.common.ui.widget.linechart.DiscreteSignalPlot
 import com.glebalekseevjk.common.ui.widget.linechart.QuantizedSignalPlot
 import com.glebalekseevjk.common.ui.widget.table.TableWidget
 import ui.widget.MainWrapper
@@ -82,9 +83,9 @@ fun MainScreen() {
             Column(modifier = Modifier.width(1000.dp)) {
                 Text(
                     "1) Рассчитать вспомогательные параметры АЧХ:\n" +
-                            "δ1 = ${resultDataState.delta1.roundToString(3)}\n" +
-                            "δ2 = ${resultDataState.delta2.roundToString(3)}\n" +
-                            "min(δ1, δ2) = ${resultDataState.delta.roundToString(3)}", modifier = Modifier
+                            "δ1 = ${(resultDataState.delta1*100.0).roundToString(3)}%\n" +
+                            "δ2 = ${(resultDataState.delta2*100.0).roundToString(3)}%\n" +
+                            "min(δ1, δ2) = ${(resultDataState.delta*100.0).roundToString(3)}%", modifier = Modifier
                         .padding(bottom = 24.dp)
                 )
 
@@ -183,12 +184,12 @@ fun MainScreen() {
                                 listOf(
                                     Pair(impulseResponse.axisX, impulseResponse.axisY),
                                 )
-                            }
-
+                            },
+                            false
                         ),
                         title = "Импульсная характеристика фильтра",
                         axisXLabel = "№ отсчетного значения",
-                        axisYLabel = "Импульс"
+                        axisYLabel = ""
                     )
                 }
             }
@@ -216,7 +217,7 @@ fun MainScreen() {
                         ),
                         title = "АЧХ НРЦФ",
                         axisXLabel = "w, рад/с",
-                        axisYLabel = "A, дБ"
+                        axisYLabel = "A, В"
                     )
                 }
                 Column(modifier = Modifier.heightIn(0.dp, 600.dp).width(800.dp).padding(15.dp)) {
@@ -226,7 +227,8 @@ fun MainScreen() {
                                 listOf(
                                     Pair(phaseFrequencyResponse.axisX, phaseFrequencyResponse.axisY),
                                 )
-                            }
+                            },
+                            false
 
                         ),
                         title = "ФЧХ НРЦФ",
@@ -256,12 +258,13 @@ fun MainScreen() {
                                 listOf(
                                     Pair(sourceSignal.axisX, sourceSignal.axisY),
                                 )
-                            }
+                            },
+                            false
 
                         ),
                         title = "Исходный тестовый сигнал",
                         axisXLabel = "Время, с",
-                        axisYLabel = "Амплитуда, дБ",
+                        axisYLabel = "Амплитуда, В",
                         isSpline = true
                     )
                 }
@@ -272,32 +275,21 @@ fun MainScreen() {
                     modifier = Modifier
                         .padding(bottom = 24.dp),
                     textAlign = TextAlign.Left,
-                    text = "12) Дискретизация тестового сигнала fд=128 Гц\n" +
-                            "Tд = ${resultDataState.rawSamplingStep.roundToString(3)}\n" +
+                    text = "13) Дискретизация тестового сигнала fд=128 Гц\n" +
+                            "Tд = ${resultDataState.rawSamplingStep.roundToString(3)}, c\n" +
                             "N = ${resultDataState.numberReadoutValues}\n" +
-                            "fin Tд = ${resultDataState.finalSamplingStep.roundToString(3)}"
+                            "fin Tд = ${resultDataState.finalSamplingStep.roundToString(3)}, c"
                 )
                 Column(modifier = Modifier.heightIn(0.dp, 600.dp).width(800.dp).padding(15.dp)) {
-                    CombinedLineChartPlot(
-                        DiscreteData(
-                            with(resultDataState) {
-                                listOf(
-                                    Pair(discreteSignal.axisX, discreteSignal.axisY),
-                                )
-                            }
-
-                        ),
-                        title = "Дискретный сигнал",
-                        axisXLabel = "Время, с",
-                        axisYLabel = "Амплитуда, дБ",
-                        isSpline = false
+                    DiscreteSignalPlot(
+                        DiscreteSignalLineChartData()
                     )
                 }
                 Text(
                     modifier = Modifier
                         .padding(bottom = 24.dp),
                     textAlign = TextAlign.Left,
-                    text = "Шаг квантования Δ: ${resultDataState.quantizationStep.roundToString(3)}"
+                    text = "Шаг квантования Δ: ${resultDataState.quantizationStep.roundToString(3)}, В"
                 )
                 Column(modifier = Modifier.heightIn(0.dp, 900.dp).width(800.dp).padding(15.dp)) {
                     QuantizedSignalPlot(
@@ -323,12 +315,13 @@ fun MainScreen() {
                                 listOf(
                                     Pair(outputAnalyticalSignal.axisX, outputAnalyticalSignal.axisY),
                                 )
-                            }
+                            },
+                            false
 
                         ),
                         title = "Аналитический сигнал на выходе фильтра",
                         axisXLabel = "Время, с",
-                        axisYLabel = "Амплитуда, дБ",
+                        axisYLabel = "Амплитуда, В",
                         isSpline = true
                     )
                 }
@@ -343,19 +336,30 @@ fun MainScreen() {
                     text = "16) Отсчетные значения цифрового сигнала на выходе фильтра:"
                 )
                 Column(modifier = Modifier.heightIn(0.dp, 600.dp).width(800.dp).padding(15.dp)) {
+                    DiscreteSignalPlot(
+                        DiscreteOutputSignalLineChartData()
+                    )
+                }
+            }
+
+
+            Column(modifier = Modifier.width(1000.dp)) {
+                Column(modifier = Modifier.heightIn(0.dp, 600.dp).width(800.dp).padding(15.dp)) {
                     CombinedLineChartPlot(
-                        AnalyticalOutputData(
+                        InputOutputData(
                             with(resultDataState) {
                                 listOf(
-                                    Pair(outputReferencesValuesSignal.axisX, outputReferencesValuesSignal.axisY),
+                                    Pair(sourceSignal.axisX, sourceSignal.axisY),
+                                    Pair(outputAnalyticalSignal.axisX, outputAnalyticalSignal.axisY),
                                 )
-                            }
+                            },
+                            true
 
                         ),
-                        title = "Отсчетные значения цифрового сигнала на выходе фильтра",
-                        axisXLabel = "№ отсчетного значения",
-                        axisYLabel = "Амплитуда, дБ",
-                        isSpline = false
+                        title = "Исходный и прошедший через ФНЧ сигналы",
+                        axisXLabel = "Время, с",
+                        axisYLabel = "Амплитуда, В",
+                        isSpline = true
                     )
                 }
             }
